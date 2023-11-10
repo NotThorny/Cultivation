@@ -211,7 +211,7 @@ export class Mods extends React.Component<IProps, IState> {
               <TextInput
                 id="search"
                 key="search"
-                placeholder={this.state.page.toString()}
+                placeholder={'Search Mods - Page ' + this.state.page.toString()}
                 onChange={(text: string) => {
                   this.setSearch(text)
                 }}
