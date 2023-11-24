@@ -92,6 +92,9 @@ export default class DownloadHandler {
       // Find the download that is not extracting and set it's status as such
       const index = this.downloads.findIndex((download) => download.path === obj.file)
       this.downloads[index].status = 'finished'
+
+      // Remove completed extraction from list
+      this.downloads.splice(index, 1)
     })
   }
 

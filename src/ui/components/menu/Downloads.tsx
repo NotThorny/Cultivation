@@ -23,6 +23,7 @@ const DEV_DOWNLOAD = 'https://nightly.link/Grasscutters/Grasscutter/workflows/bu
 const RESOURCES_DOWNLOAD = 'https://gitlab.com/api/v4/projects/35984297/repository/archive.zip' // Use Yuuki res as grasscutter crepe res are broken
 const MIGOTO_DOWNLOAD =
   'https://github.com/SilentNightSound/GI-Model-Importer/releases/download/v7.0/3dmigoto-GIMI-for-playing-mods.zip'
+const MIGOTO_FALLBACK = 'https://cdn.discordapp.com/attachments/615655311960965130/1177724469847003268/GIMI7.zip' // Since main dl fails for a few too many users
 
 interface IProps {
   closeFn: () => void
@@ -77,6 +78,19 @@ export default class Downloads extends React.Component<IProps, IState> {
 
     listen('jar_extracted', () => {
       this.setState({ grasscutter_set: true }, this.forceUpdate)
+    })
+
+    // Listen for GIMI failure to initiate fallback
+    listen('download_error', ({ payload }) => {
+      // @ts-expect-error shut up typescript
+      const errorData: {
+        path: string
+        error: string
+      } = payload
+
+      if (errorData.path.includes('GIMI7.zip')) {
+        this.downloadMigotoFallback()
+      }
     })
 
     if (!gc_path || gc_path === '') {
@@ -240,12 +254,20 @@ export default class Downloads extends React.Component<IProps, IState> {
   }
 
   async downloadMigoto() {
-    const folder = (await this.getCultivationFolder()) + '\\3dmigoto'
-    await invoke('dir_create', {
-      path: folder,
-    })
+    const folder = await this.getCultivationFolder()
 
     this.props.downloadManager.addDownload(MIGOTO_DOWNLOAD, folder + '\\GIMI.zip', async () => {
+      await unzip(folder + '\\GIMI.zip', folder + '\\', true)
+      this.toggleButtons()
+    })
+
+    this.toggleButtons()
+  }
+
+  async downloadMigotoFallback() {
+    const folder = await this.getCultivationFolder()
+
+    this.props.downloadManager.addDownload(MIGOTO_FALLBACK, folder + '\\GIMI.zip', async () => {
       await unzip(folder + '\\GIMI.zip', folder + '\\', true)
       this.toggleButtons()
     })
