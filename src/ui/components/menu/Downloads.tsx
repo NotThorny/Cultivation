@@ -12,6 +12,7 @@ import { getConfigOption } from '../../../utils/configuration'
 import { invoke } from '@tauri-apps/api'
 import { listen } from '@tauri-apps/api/event'
 import HelpButton from '../common/HelpButton'
+import { ask } from '@tauri-apps/api/dialog'
 
 const FULL_BUILD_DOWNLOAD = 'https://github.com/NotThorny/Grasscutter/releases/download/culti-aio/GrasscutterCulti.zip' // Change to link that can be updated without modifying here
 const FULL_QUEST_DOWNLOAD = 'https://github.com/NotThorny/Grasscutter/releases/download/culti-aio/GrasscutterQuests.zip'
@@ -197,13 +198,23 @@ export default class Downloads extends React.Component<IProps, IState> {
   }
 
   async downloadResources() {
+    // Tell the user this is not needed in most cases
+    if (
+      !(await ask(
+        'These are not needed if you have already downloaded the All-in-One!! \nAre you sure you want to continue this download?'
+      ))
+    ) {
+      // If refusing confirmation
+      return
+    }
+
+    // Tell the user this takes some time
+    alert(
+      'Extracting resources can take time! If your resources appear to be "stuck" extracting for less than 15-20 mins, they likely still are extracting.'
+    )
+
     const folder = await this.getGrasscutterFolder()
     this.props.downloadManager.addDownload(RESOURCES_DOWNLOAD, folder + '\\resources.zip', async () => {
-      // Tell the user this takes some time
-      alert(
-        'Extracting resources can take time! If your resources appear to be "stuck" extracting for less than 15-20 mins, they likely still are extracting.'
-      )
-
       // Delete the existing folder if it exists
       if (
         await invoke('dir_exists', {
