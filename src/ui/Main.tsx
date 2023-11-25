@@ -152,6 +152,10 @@ export class Main extends React.Component<IProps, IState> {
       game_install_path: game_path,
     })
 
+    if (this.state.game_install_path === '') {
+      this.setState({ isGamePathSet: false })
+    }
+
     this.setState({
       migotoSet: !!(await getConfigOption('migoto_path')),
     })
@@ -325,7 +329,10 @@ export class Main extends React.Component<IProps, IState> {
           this.state.optionsOpen ? (
             <Options
               downloadManager={this.props.downloadHandler}
-              closeFn={() => this.setState({ optionsOpen: !this.state.optionsOpen })}
+              closeFn={async () => {
+                this.setState({ optionsOpen: !this.state.optionsOpen })
+                this.setState({ migotoSet: !!(await getConfigOption('migoto_path')) })
+              }}
             />
           ) : null
         }
