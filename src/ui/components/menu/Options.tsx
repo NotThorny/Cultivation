@@ -191,20 +191,18 @@ export default class Options extends React.Component<IProps, IState> {
 
   async setGrasscutterJar(value: string) {
     setConfigOption('grasscutter_path', value)
-
-    this.setState({
-      grasscutter_path: value,
-    })
-
     const config = await getConfig()
     const path = config.grasscutter_path.replace(/\\/g, '/')
     const folderPath = path.substring(0, path.lastIndexOf('/'))
     const encEnabled = await server.encryptionEnabled(folderPath + '/config.json')
 
-    // Update encryption button when setting new jar
     this.setState({
+      grasscutter_path: value,
       encryption: encEnabled,
     })
+
+    // Encryption refuses to re-render w/o reload unless updated twice
+    this.forceUpdateEncyption()
   }
 
   setJavaPath(value: string) {
@@ -280,6 +278,16 @@ export default class Options extends React.Component<IProps, IState> {
       await setConfigOption('custom_background', value)
       window.location.reload()
     }
+  }
+
+  async forceUpdateEncyption() {
+    const config = await getConfig()
+    const path = config.grasscutter_path.replace(/\\/g, '/')
+    const folderPath = path.substring(0, path.lastIndexOf('/'))
+
+    this.setState({
+      encryption: await server.encryptionEnabled(folderPath + '/config.json'),
+    })
   }
 
   async toggleEncryption() {
