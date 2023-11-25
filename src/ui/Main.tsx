@@ -179,6 +179,9 @@ export class Main extends React.Component<IProps, IState> {
     const updatedConfig = await getConfigOption('patch_rsa')
     await setConfigOption('patch_rsa', updatedConfig)
 
+    // Update launch args to allow launching when updating from old versions
+    await setConfigOption('launch_args', await getConfigOption('launch_args'))
+
     if (!(await getConfigOption('offline_mode'))) {
       // Get latest version and compare to this version
       const latestVersion: {
