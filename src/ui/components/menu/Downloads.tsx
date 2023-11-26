@@ -88,7 +88,7 @@ export default class Downloads extends React.Component<IProps, IState> {
         error: string
       } = payload
 
-      if (errorData.path.includes('GIMI7.zip')) {
+      if (errorData.path.includes('GIMI.zip')) {
         this.downloadMigotoFallback()
       }
     })
@@ -257,7 +257,7 @@ export default class Downloads extends React.Component<IProps, IState> {
     const folder = await this.getCultivationFolder()
 
     this.props.downloadManager.addDownload(MIGOTO_DOWNLOAD, folder + '\\GIMI.zip', async () => {
-      await unzip(folder + '\\GIMI.zip', folder + '\\', true)
+      await unzip(folder + '\\GIMI.zip', folder + '\\', true, true)
       this.toggleButtons()
     })
 
@@ -267,8 +267,8 @@ export default class Downloads extends React.Component<IProps, IState> {
   async downloadMigotoFallback() {
     const folder = await this.getCultivationFolder()
 
-    this.props.downloadManager.addDownload(MIGOTO_FALLBACK, folder + '\\GIMI.zip', async () => {
-      await unzip(folder + '\\GIMI.zip', folder + '\\', true)
+    this.props.downloadManager.addDownload(MIGOTO_FALLBACK, folder + '\\GIMI7.zip', async () => {
+      await unzip(folder + '\\GIMI7.zip', folder + '\\', true, true)
       this.toggleButtons()
     })
 
