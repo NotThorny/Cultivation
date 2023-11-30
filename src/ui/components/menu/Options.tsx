@@ -16,7 +16,7 @@ import DownloadHandler from '../../../utils/download'
 import * as meta from '../../../utils/rsa'
 import HelpButton from '../common/HelpButton'
 import SmallButton from '../common/SmallButton'
-import { confirm } from '@tauri-apps/api/dialog'
+import { ask, confirm } from '@tauri-apps/api/dialog'
 import TextInput from '../common/TextInput'
 
 export enum GrasscutterElevation {
@@ -349,6 +349,15 @@ export default class Options extends React.Component<IProps, IState> {
   }
 
   async addMigotoDelay() {
+    if (
+      !(await ask(
+        'Set delay for 3dmigoto loader? This is specifically made for GIMI v6 and earlier. Using it on latest GIMI or SRMI will cause issues!!! \n\nWould you like to continue?',
+        { title: 'GIMI Delay', type: 'warning' }
+      ))
+    ) {
+      return
+    }
+
     invoke('set_migoto_delay', {
       migotoPath: this.state.migoto_path,
     })
