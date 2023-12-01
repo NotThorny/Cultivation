@@ -141,7 +141,7 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
     if (config.toggle_grasscutter) {
       const game_exe = await getGameExecutable()
 
-      const patchable = game_exe?.toLowerCase().includes('genshin' || 'yuanshen')
+      const patchable = game_exe?.toLowerCase().includes('yuanshen') || game_exe?.toLowerCase().includes('genshin')
 
       if (config.patch_rsa && patchable) {
         const gameVersion = await getGameVersion()
