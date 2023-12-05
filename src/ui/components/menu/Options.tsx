@@ -557,7 +557,7 @@ export default class Options extends React.Component<IProps, IState> {
                 <Tr text="swag.migoto" />
               </div>
               <div className="OptionValue" id="menuOptionsDirMigoto">
-                <SmallButton onClick={this.addMigotoDelay} id="migotoDelay" contents="help.add_delay"></SmallButton>
+                <SmallButton onClick={this.addMigotoDelay} id="migotoDelay"></SmallButton>
                 <DirInput onChange={this.setMigoto} value={this.state?.migoto_path} extensions={['exe']} />
               </div>
             </div>
