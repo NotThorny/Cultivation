@@ -410,9 +410,18 @@ pub fn set_migoto_delay(migoto_path: String) -> bool {
 
   // Set options
   conf.with_section(Some("Loader")).set("delay", "20");
+  conf
+    .with_section(Some("Include"))
+    .set("include", "ShaderFixes\\help.ini");
 
   // Write file
-  match conf.write_to_file(&migoto_pathbuf) {
+  match conf.write_to_file_opt(
+    &migoto_pathbuf,
+    ini::WriteOption {
+      escape_policy: (ini::EscapePolicy::Nothing),
+      line_separator: (ini::LineSeparator::SystemDefault),
+    },
+  ) {
     Ok(_) => {
       println!("Wrote delay!");
       true
