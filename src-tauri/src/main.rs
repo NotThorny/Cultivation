@@ -60,7 +60,6 @@ async fn parse_args(inp: &Vec<String>) -> Result<Args, ArgsError> {
   args.flag("h", "help", "Print various CLI args");
   args.flag("p", "proxy", "Start the proxy server");
   args.flag("G", "launch-game", "Launch the game");
-  args.flag("o", "other-redirects", "Redirect other certain anime games");
   args.flag(
     "A",
     "no-admin",
@@ -153,10 +152,6 @@ async fn parse_args(inp: &Vec<String>) -> Result<Args, ArgsError> {
     let mut pathbuf = tauri::api::path::data_dir().unwrap();
     pathbuf.push("cultivation");
     pathbuf.push("ca");
-
-    if args.value_of("other_redirects")? {
-      proxy::set_redirect_more();
-    }
 
     connect(8035, pathbuf.to_str().unwrap().to_string()).await;
   }
