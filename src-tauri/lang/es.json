@@ -36,7 +36,8 @@
     "redirect_more": "También redirigir otros juegos MHY",
     "web_cache": "Eliminar la carpeta webCaches",
     "launch_args": "Args de lanzamiento",
-    "offline_mode": "Modo sin conexión"
+    "offline_mode": "Modo sin conexión",
+    "fix_res": "Reparar el tiempo de espera"
   },
   "downloads": {
     "grasscutter_fullbuild": "Descargar datos todo en uno de Grasscutter",
@@ -68,7 +69,8 @@
     "select_folder": "Seleccionar la carpeta",
     "download": "Descargar",
     "delete": "Borrar",
-    "install": "Instalar"
+    "install": "Instalar",
+    "fix": "Fix"
   },
   "news": {
     "latest_commits": "Commits recientes",

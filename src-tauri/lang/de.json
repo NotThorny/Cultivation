@@ -38,7 +38,8 @@
     "grasscutter_elevation": "Methode zur Ausführung von GC auf eingeschränkten Ports",
     "web_cache": "WebCaches-Ordner löschen",
     "launch_args": "Start-Argumente",
-    "offline_mode": "Offline-Modus"
+    "offline_mode": "Offline-Modus",
+    "fix_res": "Login-Zeitüberschreitung beheben"
   },
   "downloads": {
     "grasscutter_fullbuild": "Grasscutter All-in-One herunterladen",
@@ -70,7 +71,8 @@
     "select_folder": "Ordner auswählen...",
     "download": "Herunterladen",
     "delete": "Löschen",
-    "install": "Installieren"
+    "install": "Installieren",
+    "fix": "Fix"
   },
   "news": {
     "latest_commits": "Neueste Commits",

@@ -35,7 +35,8 @@
     "redirect_more": "Также перенаправьте другие игры MHY",
     "web_cache": "Удалить папку webCaches",
     "launch_args": "Параметры запуска",
-    "offline_mode": "Автономный режим"
+    "offline_mode": "Автономный режим",
+    "fix_res": "Исправить таймаут входа в систему"
   },
   "downloads": {
     "grasscutter_fullbuild": "Скачать все в одном Grasscutter",
@@ -67,7 +68,8 @@
     "select_folder": "Выберите папку...",
     "download": "Скачать",
     "delete": "Удалить",
-    "install": "Установить"
+    "install": "Установить",
+    "fix": "Fix"
   },
   "news": {
     "latest_commits": "Последние коммиты",

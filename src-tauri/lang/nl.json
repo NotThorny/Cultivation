@@ -35,7 +35,8 @@
     "redirect_more": "Richt ook andere MHY-spellen",
     "web_cache": "Verwijder de webCaches-map",
     "launch_args": "Args starten",
-    "offline_mode": "Offline Modus"
+    "offline_mode": "Offline Modus",
+    "fix_res": "Time-out inloggen verhelpen"
   },
   "downloads": {
     "grasscutter_fullbuild": "Grasscutter Alles-in-één Downloaden",
@@ -67,7 +68,8 @@
     "select_folder": "Select folder...",
     "download": "Download",
     "delete": "Verwijder",
-    "install": "Install"
+    "install": "Install",
+    "fix": "Fix"
   },
   "news": {
     "latest_commits": "Recente Opdrachten",

@@ -34,7 +34,8 @@
     "redirect_more": "Arī novirzīt citas MHY spēles",
     "web_cache": "Dzēsiet mapi WebCaches",
     "launch_args": "Palaišanas args",
-    "offline_mode": "Bezsaistes režīms"
+    "offline_mode": "Bezsaistes režīms",
+    "fix_res": "Fiksēt pieteikšanās laika"
   },
   "downloads": {
     "grasscutter_fullbuild": "Lejupielādējiet Grasscutter viss vienā",
@@ -64,7 +65,8 @@
     "select_file": "Izvēlēties failu vai mapu...",
     "select_folder": "Izvēlēties mapu...",
     "download": "Lejupielādēt",
-    "delete": "Dzēst"
+    "delete": "Dzēst",
+    "fix": "Fix"
   },
   "news": {
     "latest_commits": "Nesen kommitus",

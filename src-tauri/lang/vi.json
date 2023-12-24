@@ -36,7 +36,8 @@
     "redirect_more": "Đồng thời chuyển hướng các trò chơi MHY khác",
     "web_cache": "Xóa thư mục webCaches",
     "launch_args": "Khởi chạy đối số",
-    "offline_mode": "Chế độ ngoại tuyến"
+    "offline_mode": "Chế độ ngoại tuyến",
+    "fix_res": "Sửa lỗi hết thời gian đăng nhập"
   },
   "downloads": {
     "grasscutter_fullbuild": "Tải Grasscutter tất cả trong một",
@@ -68,7 +69,8 @@
     "select_folder": "Chọn thư mục...",
     "download": "Tải",
     "delete": "Xóa bỏ",
-    "install": "Cài"
+    "install": "Cài",
+    "fix": "Fix"
   },
   "news": {
     "latest_commits": "Thay Đổi Gần Đây",

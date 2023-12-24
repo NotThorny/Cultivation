@@ -38,7 +38,8 @@
     "grasscutter_elevation": "Method of running GC on restricted ports",
     "web_cache": "Delete webCaches folder",
     "launch_args": "Launch Args",
-    "offline_mode": "Offline Mode"
+    "offline_mode": "Offline Mode",
+    "fix_res": "Fix Login Timeout"
   },
   "downloads": {
     "grasscutter_fullbuild": "Download Grasscutter All-in-One",
@@ -70,7 +71,8 @@
     "select_folder": "Select folder...",
     "download": "Download",
     "delete": "Delete",
-    "install": "Install"
+    "install": "Install",
+    "fix": "Fix"
   },
   "news": {
     "latest_commits": "Recent Commits",

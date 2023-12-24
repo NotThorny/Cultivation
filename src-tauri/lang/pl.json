@@ -38,7 +38,8 @@
     "grasscutter_elevation": "Sposób uruchomienia GC na ograniczonym porcie",
     "web_cache": "Usuń folder webCaches",
     "launch_args": "Argumenty uruchamiania",
-    "offline_mode": "Tryb offline"
+    "offline_mode": "Tryb offline",
+    "fix_res": "Napraw limit czasu logowania"
   },
   "downloads": {
     "grasscutter_fullbuild": "Pobierz Grasscutter (wszystko w jednym)",
@@ -70,7 +71,8 @@
     "select_folder": "Wybierz folder...",
     "download": "Pobierz",
     "delete": "Usuń",
-    "install": "Zainstaluj"
+    "install": "Zainstaluj",
+    "fix": "Fix"
   },
   "news": {
     "latest_commits": "Ostatnie Commity",

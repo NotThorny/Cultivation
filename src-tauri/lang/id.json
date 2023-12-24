@@ -35,7 +35,8 @@
     "redirect_more": "Juga mengarahkan ulang game MHY lainnya",
     "web_cache": "Hapus folder webCaches",
     "launch_args": "Luncurkan Args",
-    "offline_mode": "Mode Offline"
+    "offline_mode": "Mode Offline",
+    "fix_res": "Perbaiki batas waktu login"
   },
   "downloads": {
     "grasscutter_fullbuild": "Sedang Mendownload Grasscutter Semua Dalam Satu",
@@ -65,7 +66,8 @@
     "select_file": "Pilih File Atau Folder...",
     "select_folder": "Pilih Folder...",
     "download": "download",
-    "delete": "Menghapus"
+    "delete": "Menghapus",
+    "fix": "Fix"
   },
   "news": {
     "latest_commits": "Commit Terbaru",
