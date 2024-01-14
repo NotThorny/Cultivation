@@ -69,13 +69,13 @@ jobs:
           sudo apt-get update
           sudo apt install libwebkit2gtk-4.0-dev build-essential curl wget libssl-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev
 
-      - name: Install deps and build
-        run: yarn && yarn build --debug
+      - name: Install deps and build release
+        run: yarn && yarn build
 
       - name: Compress build
         uses: vimtor/action-zip@v1
         with:
-          files: src-tauri/target/debug/lang/ src-tauri/target/debug/keys/ src-tauri/target/debug/patch/ src-tauri/target/debug/cultivation src-tauri/target/debug/bundle/deb
+          files: src-tauri/target/release/lang/ src-tauri/target/release/keys/ src-tauri/target/release/patch/ src-tauri/target/release/cultivation src-tauri/target/release/bundle/deb
           recursive: true
           dest: Cultivation.zip
 
