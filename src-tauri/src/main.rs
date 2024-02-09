@@ -108,14 +108,14 @@ async fn parse_args(inp: &Vec<String>) -> Result<Args, ArgsError> {
     std::process::exit(0);
   }
 
+  // Patch if needed
+  if args.value_of("patch")? {
+    patch::patch_game().await;
+  }
+
   if args.value_of("launch-game")? {
     let game_path = config.game_install_path;
     let game_args: String = args.value_of("game-args").unwrap_or(String::new());
-
-    // Patch if needed
-    if args.value_of("patch")? {
-      patch::patch_game().await;
-    }
 
     if game_path.is_some() {
       if args.value_of("non-elevated-game")? {
