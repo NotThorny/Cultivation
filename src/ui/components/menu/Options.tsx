@@ -19,6 +19,7 @@ import SmallButton from '../common/SmallButton'
 import { ask, confirm } from '@tauri-apps/api/dialog'
 import TextInput from '../common/TextInput'
 import { unzip } from '../../../utils/zipUtils'
+import { getGameExecutable } from '../../../utils/game'
 
 export enum GrasscutterElevation {
   None = 'None',
@@ -371,6 +372,15 @@ export default class Options extends React.Component<IProps, IState> {
   }
 
   async deleteWebCache() {
+    if (await ask('Would you like to clear login cache? Yes to clear login cache. No to clear web cache.')) {
+      await invoke('wipe_registry', {
+        // The exe is always PascalCase so we can get the dir using regex
+        execName: (await getGameExecutable())?.split('.exe')[0].replace(/([a-z\d])([A-Z])/g, '$1 $2'),
+      })
+      alert('Cleared login cache!')
+      return
+    }
+
     alert('Cultivation may freeze for a moment while this occurs!')
 
     // Get webCaches folder path
