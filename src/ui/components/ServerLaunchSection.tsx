@@ -1,4 +1,5 @@
 import React from 'react'
+import { fs } from '@tauri-apps/api'
 import Checkbox from './common/Checkbox'
 import BigButton from './common/BigButton'
 import TextInput from './common/TextInput'
@@ -17,9 +18,11 @@ import { getGameExecutable, getGameVersion, getGrasscutterJar } from '../../util
 import { patchGame, unpatchGame } from '../../utils/rsa'
 import { listen } from '@tauri-apps/api/event'
 import { confirm } from '@tauri-apps/api/dialog'
+import DownloadHandler from '../../utils/download'
 
 interface IProps {
   openExtras: (playGame: () => void) => void
+  downloadHandler: DownloadHandler
 }
 
 interface IState {
@@ -140,6 +143,7 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
     // Connect to proxy
     if (config.toggle_grasscutter) {
       const game_exe = await getGameExecutable()
+      let newerGame = false
 
       const patchable = game_exe?.toLowerCase().includes('yuanshen') || game_exe?.toLowerCase().includes('genshin')
 
@@ -164,7 +168,40 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
           return
         }
 
-        const patched = await patchGame()
+        if (gameVersion?.major == 4 && gameVersion?.minor == 5) {
+          newerGame = true
+
+          const path = (await invoke('install_location')) as string
+          const patchstring = '\\altpatch\\'
+          const altPatch = path + patchstring
+
+          const ALT_PATCH =
+            'https://autopatchhk.yuanshen.com/client_app/download/pc_zip/20231030132335_iOEfPMcbrXpiA8Ca/ScatteredFiles/GenshinImpact_Data/Plugins/mihoyonet.dll'
+          const pExists = (await invoke('dir_exists', {
+            path: altPatch,
+          })) as boolean
+
+          if (!pExists) {
+            await invoke('dir_create', {
+              path: altPatch,
+            })
+            this.props.downloadHandler.addDownload(ALT_PATCH, path + '/altpatch/mihoyonet.dll')
+            await confirm('Please wait for the download in the bottom left to disappear, then click yes')
+          }
+
+          if (config.launch_args.length < 1) {
+            if (
+              await confirm(
+                "You don't have an address set yet for 4.5! Would you like to use the default? \n\nIf you say no, you must set your own address and port in launch args at the bottom of settings."
+              )
+            ) {
+              config.launch_args = '-server=http://127.0.0.1:443'
+              setConfigOption('launch_args', '-server=http://127.0.0.1:443')
+            }
+          }
+        }
+
+        const patched = await patchGame(newerGame)
 
         if (!patched) {
           alert('Could not patch! Try launching again, or patching manually.')

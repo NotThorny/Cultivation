@@ -349,7 +349,7 @@ export class Main extends React.Component<IProps, IState> {
         }
 
         <div className="BottomSection" id="bottomSectionContainer">
-          <ServerLaunchSection openExtras={this.openExtrasMenu} />
+          <ServerLaunchSection openExtras={this.openExtrasMenu} downloadHandler={this.props.downloadHandler} />
 
           <div
             id="DownloadProgress"

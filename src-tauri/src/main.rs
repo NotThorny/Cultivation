@@ -110,7 +110,7 @@ async fn parse_args(inp: &Vec<String>) -> Result<Args, ArgsError> {
 
   // Patch if needed
   if args.value_of("patch")? {
-    patch::patch_game().await;
+    patch::patch_game(false).await;
   }
 
   if args.value_of("launch-game")? {

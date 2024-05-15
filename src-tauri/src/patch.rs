@@ -50,8 +50,12 @@ struct WhatToUnpach {
 
 #[cfg(windows)]
 #[tauri::command]
-pub async fn patch_game() -> bool {
-  let patch_path = PathBuf::from(system_helpers::install_location()).join("patch/version.dll");
+pub async fn patch_game(newer_game: bool) -> bool {
+  let mut patch_path = PathBuf::from(system_helpers::install_location()).join("patch/version.dll");
+
+  if newer_game {
+    patch_path = PathBuf::from(system_helpers::install_location()).join("patch/45version.dll");
+  }
 
   // Are we already patched with mhypbase? If so, that's fine, just continue as normal
   let game_is_patched = file_helpers::are_files_identical(
@@ -79,6 +83,20 @@ pub async fn patch_game() -> bool {
 
   if !replaced {
     return false;
+  }
+
+  if newer_game {
+    patch_path = PathBuf::from(system_helpers::install_location()).join("altpatch/mihoyonet.dll");
+    // Copy the other part of patch to game files
+    let alt_replaced = file_helpers::copy_file_with_new_name(
+      patch_path.clone().to_str().unwrap().to_string(),
+      get_game_rsa_path().await.unwrap() + &String::from("/GenshinImpact_Data/Plugins"),
+      String::from("mihoyonet.dll"),
+    );
+
+    if !alt_replaced {
+      return false;
+    }
   }
 
   true
