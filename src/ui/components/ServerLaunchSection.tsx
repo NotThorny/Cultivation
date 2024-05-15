@@ -188,16 +188,11 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
             await confirm('Please wait for the download in the bottom left to disappear, then click yes')
           }
 
-          if (config.launch_args.length < 1) {
-            if (
-              await confirm(
-                "You don't have an address set yet for 4.5! Would you like to use the default? \n\nIf you say no, you must set your own address and port in launch args at the bottom of settings in the form of -server=http:127.0.0.1:443."
-              )
-            ) {
-              config.launch_args = '-server=http://127.0.0.1:443'
-              setConfigOption('launch_args', '-server=http://127.0.0.1:443')
-            }
+          let httpString = 'http://'
+          if (this.state.httpsEnabled) {
+            httpString = 'https://'
           }
+          config.launch_args = '-server=' + httpString + this.state.ip + ':' + this.state.port
         }
 
         const patched = await patchGame(newerGame)
