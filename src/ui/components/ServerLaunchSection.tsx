@@ -1,5 +1,4 @@
 import React from 'react'
-import { fs } from '@tauri-apps/api'
 import Checkbox from './common/Checkbox'
 import BigButton from './common/BigButton'
 import TextInput from './common/TextInput'
