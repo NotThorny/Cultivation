@@ -54,7 +54,7 @@ pub async fn patch_game(newer_game: bool) -> bool {
   let mut patch_path = PathBuf::from(system_helpers::install_location()).join("patch/version.dll");
 
   if newer_game {
-    patch_path = PathBuf::from(system_helpers::install_location()).join("patch/45version.dll");
+    patch_path = PathBuf::from(system_helpers::install_location()).join("patch/46version.dll");
   }
 
   // Are we already patched with mhypbase? If so, that's fine, just continue as normal

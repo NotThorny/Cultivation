@@ -168,6 +168,13 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
         }
 
         if (gameVersion?.major == 4 && gameVersion?.minor == 5) {
+          await confirm(
+            'Please use Cultivation version 1.4.0 for game version 4.5. You can find that here: https://github.com/NotThorny/Cultivation/releases/tag/1.4.0'
+          )
+          return
+        }
+
+        if (gameVersion?.major == 4 && gameVersion?.minor > 5) {
           newerGame = true
 
           const path = (await invoke('install_location')) as string
@@ -188,11 +195,12 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
             await confirm('Please wait for the download in the bottom left to disappear, then click yes')
           }
 
-          let httpString = 'http://'
-          if (this.state.httpsEnabled) {
-            httpString = 'https://'
-          }
-          config.launch_args = '-server=' + httpString + this.state.ip + ':' + this.state.port
+          /* For custom address patch only, used in 4.5 */
+          // let httpString = 'http://'
+          // if (this.state.httpsEnabled) {
+          //   httpString = 'https://'
+          // }
+          // config.launch_args = '-server=' + httpString + this.state.ip + ':' + this.state.port
         }
 
         const patched = await patchGame(newerGame)
