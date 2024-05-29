@@ -242,6 +242,7 @@ fn main() -> Result<(), ArgsError> {
         file_helpers::are_files_identical,
         file_helpers::read_file,
         file_helpers::write_file,
+        file_helpers::does_file_exist,
         downloader::download_file,
         downloader::stop_download,
         lang::get_lang,

@@ -58,6 +58,11 @@ pub fn are_files_identical(path1: &str, path2: &str) -> bool {
 }
 
 #[tauri::command]
+pub fn does_file_exist(path1: &str) -> bool {
+  fs::metadata(path1).is_ok()
+}
+
+#[tauri::command]
 pub fn copy_file(path: String, new_path: String) -> bool {
   let filename = &path.split('/').last().unwrap();
   let path_buf = PathBuf::from(&path);
