@@ -297,7 +297,7 @@ fn enable_process_watcher(window: tauri::Window, process: String) {
 
   thread::spawn(move || {
     // Initial sleep for 8 seconds, since running 20 different injectors or whatever can take a while
-    std::thread::sleep(std::time::Duration::from_secs(10));
+    std::thread::sleep(std::time::Duration::from_secs(60));
 
     let mut system = System::new_all();
 
