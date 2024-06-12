@@ -297,7 +297,7 @@ fn enable_process_watcher(window: tauri::Window, process: String) {
 
   thread::spawn(move || {
     // Initial sleep for 8 seconds, since running 20 different injectors or whatever can take a while
-    std::thread::sleep(std::time::Duration::from_secs(10));
+    std::thread::sleep(std::time::Duration::from_secs(60));
 
     let mut system = System::new_all();
 
@@ -336,7 +336,7 @@ fn enable_process_watcher(window: tauri::Window, process: String) {
 fn enable_process_watcher(window: tauri::Window, process: String) {
   drop(process);
   thread::spawn(move || {
-    let end_time = Instant::now() + Duration::from_secs(60);
+    let end_time = Instant::now() + Duration::from_secs(90);
     let game_thread = loop {
       let mut lock = AAGL_THREAD.lock().unwrap();
       if lock.is_some() {
