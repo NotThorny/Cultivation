@@ -161,7 +161,7 @@ pub async fn patch_game(newer_game: bool, version: String) -> bool {
 
 #[cfg(target_os = "linux")]
 #[tauri::command]
-pub async fn patch_game(newer_game: bool) -> bool {
+pub async fn patch_game(_newer_game: bool, _version: String) -> bool {
   let mut patch_state_mutex = PATCH_STATE.lock().await;
   if patch_state_mutex.is_some() {
     println!("Game already patched!");
