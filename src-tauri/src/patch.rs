@@ -254,7 +254,7 @@ pub async fn unpatch_game() -> bool {
   let is_alt_patched = file_helpers::are_files_identical(
     patch_path.clone().to_str().unwrap(),
     PathBuf::from(get_game_rsa_path().await.unwrap())
-      .join("/GenshinImpact_Data/Plugins/mihoyonet.dll")
+      .join("GenshinImpact_Data/Plugins/mihoyonet.dll")
       .to_str()
       .unwrap(),
   );
