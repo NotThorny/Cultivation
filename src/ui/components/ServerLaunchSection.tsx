@@ -174,6 +174,8 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
           return
         }
 
+        const versionString = gameVersion?.major.toString() + gameVersion?.minor.toString()
+
         if (gameVersion?.major == 4 && gameVersion?.minor > 5) {
           newerGame = true
 
@@ -203,7 +205,7 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
           // config.launch_args = '-server=' + httpString + this.state.ip + ':' + this.state.port
         }
 
-        const patched = await patchGame(newerGame)
+        const patched = await patchGame(newerGame, versionString)
 
         if (!patched) {
           alert('Could not patch! Try launching again, or patching manually.')

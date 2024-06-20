@@ -50,11 +50,12 @@ struct WhatToUnpach {
 
 #[cfg(windows)]
 #[tauri::command]
-pub async fn patch_game(newer_game: bool) -> bool {
+pub async fn patch_game(newer_game: bool, version: String) -> bool {
   let mut patch_path = PathBuf::from(system_helpers::install_location()).join("patch/version.dll");
 
   if newer_game {
-    patch_path = PathBuf::from(system_helpers::install_location()).join("patch/46version.dll");
+    let patch_version = format!("patch/{version}version.dll");
+    patch_path = PathBuf::from(system_helpers::install_location()).join(patch_version);
     let alt_patch_path = PathBuf::from(system_helpers::install_location()).join("altpatch");
 
     // Should handle overwriting backup with new version backup later

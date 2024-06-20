@@ -1,8 +1,8 @@
 import { invoke } from '@tauri-apps/api'
 // Patch file from: https://github.com/34736384/RSAPatch/
 
-export async function patchGame(newerGame: boolean) {
-  return invoke('patch_game', { newerGame })
+export async function patchGame(newerGame: boolean, version: String) {
+  return invoke('patch_game', { newerGame, version })
 }
 
 export async function unpatchGame() {
