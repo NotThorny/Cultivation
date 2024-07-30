@@ -76,8 +76,10 @@ export class Main extends React.Component<IProps, IState> {
       setConfigOption('grasscutter_path', payload)
     })
 
-    listen('migoto_extracted', ({ payload }: { payload: string }) => {
-      setConfigOption('migoto_path', payload)
+    listen('migoto_extracted', async ({ payload }: { payload: string }) => {
+      await setConfigOption('migoto_path', payload)
+      this.setState({ migotoSet: true })
+      window.location.reload()
     })
 
     // Emitted for rsa replacing-purposes

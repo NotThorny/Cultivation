@@ -169,14 +169,20 @@ export default class Options extends React.Component<IProps, IState> {
     setConfigOption('game_install_path', value)
 
     // I hope this stops people setting launcher.exe because oml it's annoying
-    if (value.endsWith('launcher.exe')) {
+    if (value.endsWith('launcher.exe') || value.endsWith('.lnk')) {
       const pathArr = value.replace(/\\/g, '/').split('/')
       pathArr.pop()
       const path = pathArr.join('/') + '/Genshin Impact Game/'
 
-      alert(
-        `You have set your game execuatable to "launcher.exe". You should not do this. Your game executable is located in:\n\n${path}`
-      )
+      if (value.endsWith('.lnk')) {
+        alert(
+          'You have set your game executable to a shortcut. You should not do this. Your patching will not work, and your proxy may shut off unexpectedly.'
+        )
+      } else {
+        alert(
+          `You have set your game execuatable to "launcher.exe". You should not do this. Your game executable is located in:\n\n${path}`
+        )
+      }
     }
 
     // If setting any other game, automatically set to redirect more
@@ -390,8 +396,12 @@ export default class Options extends React.Component<IProps, IState> {
     const path2 = pathArr.join('/') + '/Yuanshen_Data/webCaches'
 
     // Delete the folder
-    await invoke('dir_delete', { path: path })
-    await invoke('dir_delete', { path: path2 })
+    if (await invoke('dir_exists', { path: path })) {
+      await invoke('dir_delete', { path: path })
+    }
+    if (await invoke('dir_exists', { path: path2 })) {
+      await invoke('dir_delete', { path: path2 })
+    }
   }
 
   async fixRes() {

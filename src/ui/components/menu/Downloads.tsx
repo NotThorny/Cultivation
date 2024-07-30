@@ -8,7 +8,7 @@ import { dataDir } from '@tauri-apps/api/path'
 
 import './Downloads.css'
 import Divider from './Divider'
-import { getConfigOption } from '../../../utils/configuration'
+import { getConfigOption, setConfigOption } from '../../../utils/configuration'
 import { invoke } from '@tauri-apps/api'
 import { listen } from '@tauri-apps/api/event'
 import HelpButton from '../common/HelpButton'
@@ -266,6 +266,12 @@ export default class Downloads extends React.Component<IProps, IState> {
   }
 
   async downloadMigoto() {
+    if (!this.state.swag) {
+      await setConfigOption('swag_mode', true)
+      this.setState({ swag: true })
+      await setConfigOption('last_extras', { migoto: true, akebi: false, reshade: false })
+    }
+
     const folder = await this.getCultivationFolder()
 
     this.props.downloadManager.addDownload(MIGOTO_DOWNLOAD, folder + '\\GIMI.zip', async () => {
@@ -403,7 +409,7 @@ export default class Downloads extends React.Component<IProps, IState> {
             </BigButton>
           </div>
         </div> */}
-        <div className="DownloadMenuSection" id="downloadMenuContainerGCDevData">
+        {/* <div className="DownloadMenuSection" id="downloadMenuContainerGCDevData">
           <div className="DownloadLabel" id="downloadMenuLabelGCDevData">
             <Tr
               text={
@@ -423,7 +429,7 @@ export default class Downloads extends React.Component<IProps, IState> {
               <Tr text="components.download" />
             </BigButton>
           </div>
-        </div>
+        </div> */}
 
         <div className="DownloadMenuSection" id="downloadMenuContainerResources">
           <div className="DownloadLabel" id="downloadMenuLabelResources">
@@ -441,25 +447,23 @@ export default class Downloads extends React.Component<IProps, IState> {
           </div>
         </div>
 
-        {this.state.swag && (
-          <>
-            <Divider />
-            <div className="HeaderText" id="downloadMenuModsHeader">
-              <Tr text="downloads.mods_header" />
+        <>
+          <Divider />
+          <div className="HeaderText" id="downloadMenuModsHeader">
+            <Tr text="downloads.mods_header" />
+          </div>
+          <div className="DownloadMenuSection" id="downloadMenuContainerMigoto">
+            <div className="DownloadLabel" id="downloadMenuLabelMigoto">
+              <Tr text={'downloads.migoto'} />
+              <HelpButton contents="help.migoto" />
             </div>
-            <div className="DownloadMenuSection" id="downloadMenuContainerMigoto">
-              <div className="DownloadLabel" id="downloadMenuLabelMigoto">
-                <Tr text={'downloads.migoto'} />
-                <HelpButton contents="help.migoto" />
-              </div>
-              <div className="DownloadValue" id="downloadMenuButtonMigoto">
-                <BigButton disabled={this.state.migoto_downloading} onClick={this.downloadMigoto} id="migotoBtn">
-                  <Tr text="components.download" />
-                </BigButton>
-              </div>
+            <div className="DownloadValue" id="downloadMenuButtonMigoto">
+              <BigButton disabled={this.state.migoto_downloading} onClick={this.downloadMigoto} id="migotoBtn">
+                <Tr text="components.download" />
+              </BigButton>
             </div>
-          </>
-        )}
+          </div>
+        </>
       </Menu>
     )
   }
