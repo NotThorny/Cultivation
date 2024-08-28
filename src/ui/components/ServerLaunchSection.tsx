@@ -176,7 +176,7 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
 
         const versionString = gameVersion?.major.toString() + gameVersion?.minor.toString()
 
-        if (gameVersion?.major == 4 && gameVersion?.minor > 5) {
+        if ((gameVersion?.major == 4 && gameVersion?.minor > 5) || gameVersion?.major > 4) {
           newerGame = true
 
           const path = (await invoke('install_location')) as string

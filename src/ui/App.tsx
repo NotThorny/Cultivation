@@ -87,6 +87,7 @@ class App extends React.Component<Readonly<unknown>, IState> {
         // @ts-expect-error - TS doesn't like our custom event
         page: e.detail,
       })
+      this.forceUpdate
     })
   }
 
