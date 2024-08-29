@@ -55,6 +55,7 @@ interface IState {
   redirect_more: boolean
   launch_args: string
   offline_mode: boolean
+  newer_game: boolean
 
   // Linux stuff
   grasscutter_elevation: string
@@ -92,6 +93,7 @@ export default class Options extends React.Component<IProps, IState> {
       redirect_more: false,
       launch_args: '',
       offline_mode: false,
+      newer_game: false,
 
       // Linux stuff
       grasscutter_elevation: GrasscutterElevation.None,
@@ -152,6 +154,7 @@ export default class Options extends React.Component<IProps, IState> {
       redirect_more: config.redirect_more || false,
       launch_args: config.launch_args,
       offline_mode: config.offline_mode || false,
+      newer_game: config.newer_game || false,
 
       // Linux stuff
       grasscutter_elevation: config.grasscutter_elevation || GrasscutterElevation.None,
@@ -702,6 +705,19 @@ export default class Options extends React.Component<IProps, IState> {
               onChange={() => this.toggleOption('offline_mode')}
               checked={this.state?.offline_mode}
               id="offlineMode"
+            />
+          </div>
+        </div>
+
+        <div className="OptionSection" id="menuOptionsContainerNewerGame">
+          <div className="OptionLabel" id="menuOptionsLabelNewerGame">
+            <Tr text="Patch Mihoyonet" />
+          </div>
+          <div className="OptionValue" id="menuOptionsCheckboxNewerGame">
+            <Checkbox
+              onChange={() => this.toggleOption('newer_game')}
+              checked={this.state?.newer_game}
+              id="newerGame"
             />
           </div>
         </div>

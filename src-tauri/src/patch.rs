@@ -53,9 +53,13 @@ struct WhatToUnpach {
 pub async fn patch_game(newer_game: bool, version: String) -> bool {
   let mut patch_path = PathBuf::from(system_helpers::install_location()).join("patch/version.dll");
 
-  if newer_game {
+  if version != "40".to_string() {
     let patch_version = format!("patch/{version}version.dll");
     patch_path = PathBuf::from(system_helpers::install_location()).join(patch_version);
+  }
+
+  // Now using as hoyonet switch
+  if newer_game {
     let alt_patch_path = PathBuf::from(system_helpers::install_location()).join("altpatch");
 
     // Should handle overwriting backup with new version backup later
@@ -77,6 +81,18 @@ pub async fn patch_game(newer_game: bool, version: String) -> bool {
       if !backup {
         println!("Unable to backup file!");
       }
+    }
+
+    patch_path = PathBuf::from(system_helpers::install_location()).join("altpatch/mihoyonet.dll");
+    // Copy the other part of patch to game files
+    let alt_replaced = file_helpers::copy_file_with_new_name(
+      patch_path.clone().to_str().unwrap().to_string(),
+      get_game_rsa_path().await.unwrap() + &String::from("/GenshinImpact_Data/Plugins"),
+      String::from("mihoyonet.dll"),
+    );
+
+    if !alt_replaced {
+      return false;
     }
 
     /***  For replacing old backup file with new one, for example when version changes
@@ -140,20 +156,6 @@ pub async fn patch_game(newer_game: bool, version: String) -> bool {
 
   if !replaced {
     return false;
-  }
-
-  if newer_game {
-    patch_path = PathBuf::from(system_helpers::install_location()).join("altpatch/mihoyonet.dll");
-    // Copy the other part of patch to game files
-    let alt_replaced = file_helpers::copy_file_with_new_name(
-      patch_path.clone().to_str().unwrap().to_string(),
-      get_game_rsa_path().await.unwrap() + &String::from("/GenshinImpact_Data/Plugins"),
-      String::from("mihoyonet.dll"),
-    );
-
-    if !alt_replaced {
-      return false;
-    }
   }
 
   true
