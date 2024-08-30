@@ -51,14 +51,8 @@ struct WhatToUnpach {
 #[cfg(windows)]
 #[tauri::command]
 pub async fn patch_game(newer_game: bool, version: String) -> bool {
-  let mut patch_path = PathBuf::from(system_helpers::install_location()).join("patch/version.dll");
-
-  if version != "40".to_string() {
-    let patch_version = format!("patch/{version}version.dll");
-    patch_path = PathBuf::from(system_helpers::install_location()).join(patch_version);
-  }
-
-  // Now using as hoyonet switch
+  let mut patch_path;
+  // Altpatch first - Now using as hoyonet switch
   if newer_game {
     let alt_patch_path = PathBuf::from(system_helpers::install_location()).join("altpatch");
 
@@ -128,6 +122,14 @@ pub async fn patch_game(newer_game: bool, version: String) -> bool {
     //     }
     //   }
     // }
+  }
+
+  // Standard patch
+  patch_path = PathBuf::from(system_helpers::install_location()).join("patch/version.dll");
+
+  if version != "40".to_string() {
+    let patch_version = format!("patch/{version}version.dll");
+    patch_path = PathBuf::from(system_helpers::install_location()).join(patch_version);
   }
 
   // Are we already patched with mhypbase? If so, that's fine, just continue as normal
