@@ -149,6 +149,20 @@ pub async fn patch_game(newer_game: bool, version: String) -> bool {
     return true;
   }
 
+  if version == "50" {
+    let replaced50 = file_helpers::copy_file_with_new_name(
+      patch_path.clone().to_str().unwrap().to_string(),
+      get_game_rsa_path().await.unwrap(),
+      String::from("Astrolabe.dll"),
+    );
+
+    if replaced50 {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   // Copy the patch to game files
   let replaced = file_helpers::copy_file_with_new_name(
     patch_path.clone().to_str().unwrap().to_string(),
@@ -244,6 +258,14 @@ pub async fn unpatch_game() -> bool {
   let deleted = file_helpers::delete_file(
     PathBuf::from(get_game_rsa_path().await.unwrap())
       .join("version.dll")
+      .to_str()
+      .unwrap()
+      .to_string(),
+  );
+
+  file_helpers::delete_file(
+    PathBuf::from(get_game_rsa_path().await.unwrap())
+      .join("Astrolabe.dll")
       .to_str()
       .unwrap()
       .to_string(),
