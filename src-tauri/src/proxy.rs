@@ -308,7 +308,7 @@ pub fn connect_to_proxy(proxy_port: u16) {
   Config::update(config);
 }
 
-#[cfg(target_od = "macos")]
+#[cfg(target_os = "macos")]
 pub fn connect_to_proxy(_proxy_port: u16) {
   println!("No Mac support yet. Someone mail me a Macbook and I will do it B)")
 }

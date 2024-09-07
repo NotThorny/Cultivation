@@ -127,7 +127,10 @@ pub async fn patch_game(newer_game: bool, version: String) -> bool {
   // Standard patch
   patch_path = PathBuf::from(system_helpers::install_location()).join("patch/version.dll");
 
-  if version != "40".to_string() {
+  let i_ver = version.parse::<i32>().unwrap();
+
+  // For newer than 4.0, use specific patch files
+  if i_ver > 40 {
     let patch_version = format!("patch/{version}version.dll");
     patch_path = PathBuf::from(system_helpers::install_location()).join(patch_version);
   }
@@ -149,7 +152,8 @@ pub async fn patch_game(newer_game: bool, version: String) -> bool {
     return true;
   }
 
-  if version == "50" {
+  // For 5.0 and up
+  if i_ver > 49 {
     let replaced50 = file_helpers::copy_file_with_new_name(
       patch_path.clone().to_str().unwrap().to_string(),
       get_game_rsa_path().await.unwrap(),
