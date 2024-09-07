@@ -155,7 +155,7 @@ async fn parse_args(inp: &Vec<String>) -> Result<Args, ArgsError> {
     pathbuf.push("ca");
 
     if args.value_of("other-redirects")? {
-      proxy::set_redirect_more();
+      // proxy::set_redirect_more(); // Unused
     }
 
     connect(8035, pathbuf.to_str().unwrap().to_string()).await;
@@ -228,7 +228,6 @@ fn main() -> Result<(), ArgsError> {
         patch::unpatch_game,
         proxy::set_proxy_addr,
         proxy::generate_ca_files,
-        proxy::set_redirect_more,
         release::get_latest_release,
         unzip::unzip,
         file_helpers::rename,
