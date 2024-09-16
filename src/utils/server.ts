@@ -40,7 +40,11 @@ export async function encryptionEnabled(path: string) {
     return false
   }
 
-  return serverConf.server.http.encryption.useEncryption
+  if ('server' in serverConf) {
+    return serverConf.server.http.encryption.useEncryption
+  }
+
+  return false
 }
 
 export async function changeResourcePath(path: string) {
