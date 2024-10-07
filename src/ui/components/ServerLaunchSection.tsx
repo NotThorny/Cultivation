@@ -209,7 +209,9 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
         const patched = await patchGame(newerGame, versionString)
 
         if (!patched) {
-          alert('Could not patch! Try launching again, or patching manually.')
+          alert(
+            'Could not patch! You may be trying to launch a version that does not have a patch in the patch folder!\n Ensure you have the patch folder in your Cultivation install folder, and that it contains a file for the version you are using.'
+          )
           return
         }
       }
