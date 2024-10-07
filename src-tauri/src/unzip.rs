@@ -108,7 +108,7 @@ pub fn unzip(
     }
 
     // Alternate builds
-    if zipfile.contains("GrasscutterQuests") || zipfile.contains("Grasscutter47") {
+    if zipfile.contains("GrasscutterQuests") || zipfile.contains("Grasscutter50") {
       window
         .emit("jar_extracted", destpath.to_string() + "grasscutter.jar")
         .unwrap();
