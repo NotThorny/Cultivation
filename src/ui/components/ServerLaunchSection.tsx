@@ -74,6 +74,7 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
     this.setPort = this.setPort.bind(this)
     this.toggleHttps = this.toggleHttps.bind(this)
     this.launchServer = this.launchServer.bind(this)
+    this.setButtonLabel = this.setButtonLabel.bind(this)
 
     listen('start_grasscutter', async () => {
       this.launchServer()
@@ -98,6 +99,12 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
       migotoSet: config.migoto_path !== '',
       unElevated: config.un_elevated || false,
     })
+
+    this.setButtonLabel()
+  }
+
+  async componentDidUpdate() {
+    this.setButtonLabel()
   }
 
   async toggleGrasscutter() {
@@ -363,6 +370,15 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
     })
 
     await saveConfig(config)
+  }
+
+  async setButtonLabel() {
+    const ver = await getGameVersion()
+    if (ver != null) {
+      this.setState({
+        buttonLabel: (await translate('main.launch_button')) + ' ' + ver?.major + '.' + ver?.minor,
+      })
+    }
   }
 
   render() {
