@@ -103,10 +103,6 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
     this.setButtonLabel()
   }
 
-  async componentDidUpdate() {
-    this.setButtonLabel()
-  }
-
   async toggleGrasscutter() {
     const config = await getConfig()
 

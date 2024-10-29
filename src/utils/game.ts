@@ -61,7 +61,17 @@ export async function getGameVersion() {
 
   if (!hasAsb) {
     // For games that cannot determine game version
-    return null
+    const otherGameVer: string = await invoke('read_file', {
+      path: GameData + '\\StreamingAssets\\BinaryVersion.bytes',
+    })
+    const versionRaw = otherGameVer.split('.')
+    const version = {
+      major: parseInt(versionRaw[0]),
+      minor: parseInt(versionRaw[1]),
+      // This will probably never matter, just use major/minor. If needed, full version values are near EOF
+      release: 0,
+    }
+    return version
   }
 
   const settings = JSON.parse(
