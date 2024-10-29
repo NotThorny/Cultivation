@@ -55,6 +55,15 @@ export async function getGameVersion() {
     return null
   }
 
+  const hasAsb = await invoke('dir_exists', {
+    path: GameData + '\\StreamingAssets\\asb_settings.json',
+  })
+
+  if (!hasAsb) {
+    // For games that cannot determine game version
+    return null
+  }
+
   const settings = JSON.parse(
     await invoke('read_file', {
       path: GameData + '\\StreamingAssets\\asb_settings.json',
