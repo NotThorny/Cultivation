@@ -71,6 +71,11 @@ export async function getGameVersion() {
       // This will probably never matter, just use major/minor. If needed, full version values are near EOF
       release: 0,
     }
+
+    if (otherGameVer == null || otherGameVer.length < 1) {
+      return null
+    }
+
     return version
   }
 

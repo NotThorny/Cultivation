@@ -378,6 +378,10 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
       this.setState({
         buttonLabel: (await translate('main.launch_button')) + ' ' + ver?.major + '.' + ver?.minor,
       })
+    } else {
+      this.setState({
+        buttonLabel: await translate('main.launch_button'),
+      })
     }
   }
 
