@@ -79,6 +79,10 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
     listen('start_grasscutter', async () => {
       this.launchServer()
     })
+
+    listen('set_game', async () => {
+      this.setButtonLabel()
+    })
   }
 
   async componentDidMount() {

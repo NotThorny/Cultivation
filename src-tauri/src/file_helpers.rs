@@ -132,29 +132,28 @@ pub fn delete_file(path: String) -> bool {
 #[tauri::command]
 pub fn read_file(path: String) -> String {
   let path_buf = PathBuf::from(&path);
-  println!(
-    "Debug: Reading file of path {} with buf {:?}",
-    path.clone(),
-    path_buf.clone()
-  );
+  println!("Debug: Reading file of path {}", path.clone(),);
 
   let mut contents = String::new();
 
   // Version data is 3 bytes long, 3 bytes in
-  if path_buf.ends_with(".bytes") {
+  let ext = path_buf.extension().unwrap();
+  if ext.eq("bytes") {
     let offset_bytes = 3;
     let num_bytes = 3;
 
-    let mut file = match std::fs::File::open(path_buf) {
-      Ok(file) => file,
+    let mut byte_file = match std::fs::File::open(path_buf) {
+      Ok(byte_file) => byte_file,
       Err(e) => {
         println!("{}", e);
         return String::new();
       }
     };
-    file.seek(SeekFrom::Start(offset_bytes)).unwrap_or_default();
+    byte_file
+      .seek(SeekFrom::Start(offset_bytes))
+      .unwrap_or_default();
     let mut buf = vec![0; num_bytes];
-    file.read_exact(&mut buf).unwrap_or_default();
+    byte_file.read_exact(&mut buf).unwrap_or_default();
 
     contents = String::from_utf8_lossy(&buf).to_string();
   } else {
@@ -171,7 +170,7 @@ pub fn read_file(path: String) -> String {
       }
     };
 
-    file.read_to_string(&mut contents).unwrap_or_default();
+    file.read_to_string(&mut contents).unwrap();
   }
 
   contents

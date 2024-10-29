@@ -20,6 +20,7 @@ import { ask, confirm } from '@tauri-apps/api/dialog'
 import TextInput from '../common/TextInput'
 import { unzip } from '../../../utils/zipUtils'
 import { getGameExecutable } from '../../../utils/game'
+import { emit } from '@tauri-apps/api/event'
 
 export enum GrasscutterElevation {
   None = 'None',
@@ -168,8 +169,8 @@ export default class Options extends React.Component<IProps, IState> {
     this.forceUpdate()
   }
 
-  setGameExecutable(value: string) {
-    setConfigOption('game_install_path', value)
+  async setGameExecutable(value: string) {
+    await setConfigOption('game_install_path', value)
 
     // I hope this stops people setting launcher.exe because oml it's annoying
     if (value.endsWith('launcher.exe') || value.endsWith('.lnk')) {
@@ -198,6 +199,8 @@ export default class Options extends React.Component<IProps, IState> {
     this.setState({
       game_install_path: value,
     })
+
+    emit('set_game', { game_path: value })
   }
 
   async setGrasscutterJar(value: string) {
