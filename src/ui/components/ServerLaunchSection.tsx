@@ -210,7 +210,14 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
 
         if (!patched) {
           alert(
-            'Could not patch! You may be trying to launch a version that does not have a patch in the patch folder!\n Ensure you have the patch folder in your Cultivation install folder, and that it contains a file for the version you are using.'
+            "Could not patch! You're trying to launch a version that you don't have a patch for!" +
+              "\nEnsure you're using a valid game version, and have the patch for this version in your Cultivation install folder." +
+              '\n\nIf this means nothing to you, YOU HAVE THE WRONG GAME VERSION.' +
+              // Add game version due to overwhelming number of people saying they are using a version they are not using
+              '\n\nYOUR GAME VERSION: ' +
+              gameVersion?.major +
+              '.' +
+              gameVersion?.minor
           )
           return
         }
