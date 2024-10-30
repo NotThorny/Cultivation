@@ -16,6 +16,7 @@ A game launcher designed to easily proxy traffic from anime game to private serv
 - Various QoL improvements
 - Added Korean translation thanks to [@koreako12](https://github.com/koreako12)
 - Some other translation additions (machine translation, let me know if things are wrong)
+- Many other improvements and fixes
 
 # Table Of Contents
 
@@ -37,7 +38,7 @@ For game versions 3.1 and above, Cultivation automatically makes a small patch t
 
 # Download
 
-[Find release builds here!](https://github.com/Grasscutters/Cultivation/releases)
+[Find release builds here!](https://github.com/NotThorny/Cultivation/releases)
 
 Download and open the MSI, and once installed, run Cultivation as administrator. Refer below for more [detailed setup instructions](#setup).
 
@@ -60,7 +61,7 @@ Download and open the MSI, and once installed, run Cultivation as administrator.
   - If joining a public one, you're done. Just click "Connect with Grasscutter" and input the address and port. You do not have to continue these instructions.
     - If you are getting System Error, or 4214, ask the [Discord support channels](https://discord.gg/T5vZU6UyeG)
 - Open the "Downloads" menu (top right)
-  - Download "Grasscutter All-in-One" (top of the list)
+  - Download "Grasscutter All-in-One" (top of the list, pick ONE of the AIOs that matches your needs)
 - Once that is done, click the icon next to "Launch"
 - To play on your new server:
   - Click "Connect with Grasscutter"
