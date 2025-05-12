@@ -39,7 +39,8 @@
     "web_cache": "WebCaches-Ordner löschen",
     "launch_args": "Start-Argumente",
     "offline_mode": "Offline-Modus",
-    "fix_res": "Login-Zeitüberschreitung beheben"
+    "fix_res": "Login-Zeitüberschreitung beheben",
+    "show_version": "Spielversion in Schaltflächen anzeigen"
   },
   "downloads": {
     "grasscutter_fullbuild": "Grasscutter All-in-One herunterladen",

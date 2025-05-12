@@ -37,7 +37,8 @@
     "web_cache": "Xóa thư mục webCaches",
     "launch_args": "Khởi chạy đối số",
     "offline_mode": "Chế độ ngoại tuyến",
-    "fix_res": "Sửa lỗi hết thời gian đăng nhập"
+    "fix_res": "Sửa lỗi hết thời gian đăng nhập",
+    "show_version": "Hiển thị phiên bản trò chơi trên các nút"
   },
   "downloads": {
     "grasscutter_fullbuild": "Tải Grasscutter tất cả trong một",

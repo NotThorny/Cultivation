@@ -57,6 +57,7 @@ interface IState {
   launch_args: string
   offline_mode: boolean
   newer_game: boolean
+  show_version: boolean
 
   // Linux stuff
   grasscutter_elevation: string
@@ -95,6 +96,7 @@ export default class Options extends React.Component<IProps, IState> {
       launch_args: '',
       offline_mode: false,
       newer_game: false,
+      show_version: true,
 
       // Linux stuff
       grasscutter_elevation: GrasscutterElevation.None,
@@ -118,6 +120,7 @@ export default class Options extends React.Component<IProps, IState> {
     this.addMigotoDelay = this.addMigotoDelay.bind(this)
     this.toggleUnElevatedGame = this.toggleUnElevatedGame.bind(this)
     this.setLaunchArgs = this.setLaunchArgs.bind(this)
+    this.toggleShowVersion = this.toggleShowVersion.bind(this)
   }
 
   async componentDidMount() {
@@ -156,6 +159,7 @@ export default class Options extends React.Component<IProps, IState> {
       launch_args: config.launch_args,
       offline_mode: config.offline_mode || false,
       newer_game: config.newer_game || false,
+      show_version: config.show_version || false,
 
       // Linux stuff
       grasscutter_elevation: config.grasscutter_elevation || GrasscutterElevation.None,
@@ -348,6 +352,17 @@ export default class Options extends React.Component<IProps, IState> {
     this.setState({
       un_elevated: changedVal,
     })
+  }
+
+  async toggleShowVersion() {
+    const changedVal = !(await getConfigOption('show_version'))
+    await setConfigOption('show_version', changedVal)
+
+    this.setState({
+      show_version: changedVal,
+    })
+
+    emit('set_config', { show_version: changedVal })
   }
 
   async setGCElevation(value: string) {
@@ -709,6 +724,14 @@ export default class Options extends React.Component<IProps, IState> {
               checked={this.state?.offline_mode}
               id="offlineMode"
             />
+          </div>
+        </div>
+        <div className="OptionSection" id="menuOptionsContainerShowVer">
+          <div className="OptionLabel" id="menuOptionsLabelShowVer">
+            <Tr text="options.show_version" />
+          </div>
+          <div className="OptionValue" id="menuOptionsButtonShowVer">
+            <Checkbox onChange={() => this.toggleShowVersion()} checked={this.state.show_version} id="showVer" />
           </div>
         </div>
 

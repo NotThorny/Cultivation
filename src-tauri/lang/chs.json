@@ -37,7 +37,8 @@
     "web_cache": "删除 webCaches 文件夹",
     "launch_args": "启动参数",
     "offline_mode": "离线模式",
-    "fix_res": "修复登录超时"
+    "fix_res": "修复登录超时",
+    "show_version": "在按钮上显示游戏版本"
   },
   "downloads": {
     "grasscutter_fullbuild": "下载 Grasscutter 一体化",

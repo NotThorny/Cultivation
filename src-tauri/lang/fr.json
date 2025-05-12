@@ -37,7 +37,8 @@
     "web_cache": "Supprimer le dossier webCaches",
     "launch_args": "Arguments de lancement",
     "offline_mode": "Mode hors ligne",
-    "fix_res": "Réparation du login"
+    "fix_res": "Réparation du login",
+    "show_version": "Afficher la version du jeu sur les boutons"
   },
   "downloads": {
     "grasscutter_fullbuild": "Telecharger Grasscutter tout-en-un",

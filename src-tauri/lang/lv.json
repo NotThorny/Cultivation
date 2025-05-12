@@ -35,7 +35,8 @@
     "web_cache": "Dzēsiet mapi WebCaches",
     "launch_args": "Palaišanas args",
     "offline_mode": "Bezsaistes režīms",
-    "fix_res": "Fiksēt pieteikšanās laika"
+    "fix_res": "Fiksēt pieteikšanās laika",
+    "show_version": "Pogās redzamā spēles versija"
   },
   "downloads": {
     "grasscutter_fullbuild": "Lejupielādējiet Grasscutter viss vienā",

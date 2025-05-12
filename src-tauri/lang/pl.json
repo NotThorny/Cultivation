@@ -39,7 +39,8 @@
     "web_cache": "Usuń folder webCaches",
     "launch_args": "Argumenty uruchamiania",
     "offline_mode": "Tryb offline",
-    "fix_res": "Napraw limit czasu logowania"
+    "fix_res": "Napraw limit czasu logowania",
+    "show_version": "Wersja gry wyświetlana na przyciskach"
   },
   "downloads": {
     "grasscutter_fullbuild": "Pobierz Grasscutter (wszystko w jednym)",

@@ -36,7 +36,8 @@
     "web_cache": "Verwijder de webCaches-map",
     "launch_args": "Args starten",
     "offline_mode": "Offline Modus",
-    "fix_res": "Time-out inloggen verhelpen"
+    "fix_res": "Time-out inloggen verhelpen",
+    "show_version": "Spelversie weergegeven op knoppen"
   },
   "downloads": {
     "grasscutter_fullbuild": "Grasscutter Alles-in-één Downloaden",

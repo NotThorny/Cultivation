@@ -83,6 +83,10 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
     listen('set_game', async () => {
       this.setButtonLabel()
     })
+
+    listen('set_config', async () => {
+      this.setButtonLabel()
+    })
   }
 
   async componentDidMount() {
@@ -381,11 +385,18 @@ export default class ServerLaunchSection extends React.Component<IProps, IState>
   }
 
   async setButtonLabel() {
-    const ver = await getGameVersion()
-    if (ver != null) {
-      this.setState({
-        buttonLabel: (await translate('main.launch_button')) + ' ' + ver?.major + '.' + ver?.minor,
-      })
+    const config = await getConfig()
+    if (config.show_version) {
+      const ver = await getGameVersion()
+      if (ver != null) {
+        this.setState({
+          buttonLabel: (await translate('main.launch_button')) + ' ' + ver?.major + '.' + ver?.minor,
+        })
+      } else {
+        this.setState({
+          buttonLabel: await translate('main.launch_button'),
+        })
+      }
     } else {
       this.setState({
         buttonLabel: await translate('main.launch_button'),

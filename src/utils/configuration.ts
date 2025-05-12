@@ -31,6 +31,7 @@ let defaultConfig: Configuration
     launch_args: '',
     offline_mode: false,
     newer_game: false,
+    show_version: true,
 
     // Linux stuff
     grasscutter_elevation: 'None',
@@ -68,6 +69,7 @@ export interface Configuration {
   launch_args: string
   offline_mode: boolean
   newer_game: boolean
+  show_version: boolean
 
   // Linux stuff
   grasscutter_elevation: string

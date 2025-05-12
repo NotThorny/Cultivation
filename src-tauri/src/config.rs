@@ -30,6 +30,7 @@ pub struct Configuration {
   pub redirect_more: Option<bool>,
   pub launch_args: Option<String>,
   pub offline_mode: Option<bool>,
+  pub show_version: Option<bool>,
 }
 
 pub fn config_path() -> PathBuf {

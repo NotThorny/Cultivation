@@ -36,7 +36,8 @@
     "web_cache": "Hapus folder webCaches",
     "launch_args": "Luncurkan Args",
     "offline_mode": "Mode Offline",
-    "fix_res": "Perbaiki batas waktu login"
+    "fix_res": "Perbaiki batas waktu login",
+    "show_version": "Tampilkan versi game pada tombol"
   },
   "downloads": {
     "grasscutter_fullbuild": "Sedang Mendownload Grasscutter Semua Dalam Satu",

@@ -37,7 +37,8 @@
     "check_aagl": "その他のオプションは、他のランチャーをチェックしてください",
     "grasscutter_elevation": "制限されたポートでのGCの実行方法",
     "web_cache": "webCachesフォルダを削除",
-    "launch_args": "Launch Args"
+    "launch_args": "Launch Args",
+    "show_version": "ボタンにゲームバージョンを表示"
   },
   "downloads": {
     "grasscutter_fullbuild": "Grasscutter All-in-Oneをダウンロード",

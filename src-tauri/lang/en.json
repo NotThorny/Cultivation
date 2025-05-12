@@ -39,7 +39,8 @@
     "web_cache": "Delete webCaches folder",
     "launch_args": "Launch Args",
     "offline_mode": "Offline Mode",
-    "fix_res": "Fix Login Timeout"
+    "fix_res": "Fix Login Timeout",
+    "show_version": "Show game version in buttons"
   },
   "downloads": {
     "grasscutter_fullbuild": "Download Grasscutter All-in-One",
