@@ -38,7 +38,8 @@
     "launch_args": "Argomenti di lancio",
     "offline_mode": "Modalità Offline",
     "fix_res": "Correggere il timeout dell'accesso",
-    "show_version": "Mostra la versione del gioco sui pulsanti"
+    "show_version": "Mostra la versione del gioco sui pulsanti",
+    "save_profile": "Salva il profilo"
   },
   "downloads": {
     "grasscutter_fullbuild": "Scarica Grasscutter Tutto-in-Uno",

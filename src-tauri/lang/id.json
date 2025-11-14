@@ -37,7 +37,8 @@
     "launch_args": "Luncurkan Args",
     "offline_mode": "Mode Offline",
     "fix_res": "Perbaiki batas waktu login",
-    "show_version": "Tampilkan versi game pada tombol"
+    "show_version": "Tampilkan versi game pada tombol",
+    "save_profile": "Simpan profil"
   },
   "downloads": {
     "grasscutter_fullbuild": "Sedang Mendownload Grasscutter Semua Dalam Satu",

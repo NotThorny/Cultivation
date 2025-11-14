@@ -40,7 +40,8 @@
     "launch_args": "Start-Argumente",
     "offline_mode": "Offline-Modus",
     "fix_res": "Login-Zeitüberschreitung beheben",
-    "show_version": "Spielversion in Schaltflächen anzeigen"
+    "show_version": "Spielversion in Schaltflächen anzeigen",
+    "save_profile": "Profil speichern"
   },
   "downloads": {
     "grasscutter_fullbuild": "Grasscutter All-in-One herunterladen",

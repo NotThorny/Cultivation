@@ -38,7 +38,8 @@
     "launch_args": "启动参数",
     "offline_mode": "离线模式",
     "fix_res": "修复登录超时",
-    "show_version": "在按钮上显示游戏版本"
+    "show_version": "在按钮上显示游戏版本",
+    "save_profile": "保存配置配置文件"
   },
   "downloads": {
     "grasscutter_fullbuild": "下载 Grasscutter 一体化",

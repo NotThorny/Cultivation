@@ -37,7 +37,8 @@
     "launch_args": "Параметры запуска",
     "offline_mode": "Автономный режим",
     "fix_res": "Исправить таймаут входа в систему",
-    "show_version": "Версия игры отображается на кнопках"
+    "show_version": "Версия игры отображается на кнопках",
+    "save_profile": "Сохранить профиль"
   },
   "downloads": {
     "grasscutter_fullbuild": "Скачать все в одном Grasscutter",

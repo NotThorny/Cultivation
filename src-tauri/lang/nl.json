@@ -37,7 +37,8 @@
     "launch_args": "Args starten",
     "offline_mode": "Offline Modus",
     "fix_res": "Time-out inloggen verhelpen",
-    "show_version": "Spelversie weergegeven op knoppen"
+    "show_version": "Spelversie weergegeven op knoppen",
+    "save_profile": "Profiel opslaan"
   },
   "downloads": {
     "grasscutter_fullbuild": "Grasscutter Alles-in-één Downloaden",

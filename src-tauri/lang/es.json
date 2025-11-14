@@ -38,7 +38,8 @@
     "launch_args": "Args de lanzamiento",
     "offline_mode": "Modo sin conexión",
     "fix_res": "Reparar el tiempo de espera",
-    "show_version": "Mostrar versión del juego en botones"
+    "show_version": "Mostrar versión del juego en botones",
+    "save_profile": "Guardar perfil"
   },
   "downloads": {
     "grasscutter_fullbuild": "Descargar datos todo en uno de Grasscutter",

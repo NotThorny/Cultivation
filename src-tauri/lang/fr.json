@@ -38,7 +38,8 @@
     "launch_args": "Arguments de lancement",
     "offline_mode": "Mode hors ligne",
     "fix_res": "Réparation du login",
-    "show_version": "Afficher la version du jeu sur les boutons"
+    "show_version": "Afficher la version du jeu sur les boutons",
+    "save_profile": "Enregistrer le profil"
   },
   "downloads": {
     "grasscutter_fullbuild": "Telecharger Grasscutter tout-en-un",

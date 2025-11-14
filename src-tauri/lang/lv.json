@@ -36,7 +36,8 @@
     "launch_args": "Palaišanas args",
     "offline_mode": "Bezsaistes režīms",
     "fix_res": "Fiksēt pieteikšanās laika",
-    "show_version": "Pogās redzamā spēles versija"
+    "show_version": "Pogās redzamā spēles versija",
+    "save_profile": "Saglabāt profilu"
   },
   "downloads": {
     "grasscutter_fullbuild": "Lejupielādējiet Grasscutter viss vienā",
