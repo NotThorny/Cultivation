@@ -4,7 +4,14 @@ import { dataDir } from '@tauri-apps/api/path'
 import DirInput from '../common/DirInput'
 import Menu from './Menu'
 import Tr, { getLanguages } from '../../../utils/language'
-import { setConfigOption, getConfig, getConfigOption, Configuration } from '../../../utils/configuration'
+import {
+  setConfigOption,
+  getConfig,
+  getConfigOption,
+  Configuration,
+  saveNewProfileConfig,
+  setProfileOption,
+} from '../../../utils/configuration'
 import Checkbox from '../common/Checkbox'
 import Divider from './Divider'
 import { getThemeList } from '../../../utils/themes'
@@ -58,6 +65,7 @@ interface IState {
   offline_mode: boolean
   newer_game: boolean
   show_version: boolean
+  profile_name: string
 
   // Linux stuff
   grasscutter_elevation: string
@@ -97,6 +105,7 @@ export default class Options extends React.Component<IProps, IState> {
       offline_mode: false,
       newer_game: false,
       show_version: true,
+      profile_name: '',
 
       // Linux stuff
       grasscutter_elevation: GrasscutterElevation.None,
@@ -121,6 +130,8 @@ export default class Options extends React.Component<IProps, IState> {
     this.toggleUnElevatedGame = this.toggleUnElevatedGame.bind(this)
     this.setLaunchArgs = this.setLaunchArgs.bind(this)
     this.toggleShowVersion = this.toggleShowVersion.bind(this)
+    this.setProfileName = this.setProfileName.bind(this)
+    this.saveProfile = this.saveProfile.bind(this)
   }
 
   async componentDidMount() {
@@ -502,6 +513,28 @@ export default class Options extends React.Component<IProps, IState> {
     })
   }
 
+  setProfileName(text: string) {
+    this.setState({
+      profile_name: text,
+    })
+  }
+
+  async saveProfile() {
+    if (this.state.profile_name == '') {
+      alert('No name set')
+      return
+    }
+
+    const config = await getConfig()
+    await saveNewProfileConfig(config, this.state.profile_name)
+    await setProfileOption('profile', this.state.profile_name)
+    this.setState({
+      profile_name: '',
+    })
+
+    window.location.reload()
+  }
+
   render() {
     return (
       <Menu closeFn={this.props.closeFn} className="Options" heading="Options">
@@ -674,6 +707,24 @@ export default class Options extends React.Component<IProps, IState> {
 
         <Divider />
 
+        <div className="OptionSection" id="profileConfigContainer">
+          <div className="OptionLabel" id="menuOptionsLabelProfile">
+            <Tr text="options.save_profile" />
+          </div>
+          <TextInput
+            id="profile_name"
+            key="profile_name"
+            placeholder={'Profile name...'}
+            onChange={this.setProfileName}
+            initalValue={''}
+          />
+          <BigButton onClick={this.saveProfile} id="saveProfile">
+            {'Save'}
+          </BigButton>
+        </div>
+
+        <Divider />
+
         <div className="OptionSection" id="menuOptionsContainerGCWGame">
           <div className="OptionLabel" id="menuOptionsLabelGCWDame">
             <Tr text="options.grasscutter_with_game" />
@@ -734,19 +785,6 @@ export default class Options extends React.Component<IProps, IState> {
             <Checkbox onChange={() => this.toggleShowVersion()} checked={this.state.show_version} id="showVer" />
           </div>
         </div>
-
-        {/* <div className="OptionSection" id="menuOptionsContainerNewerGame">
-          <div className="OptionLabel" id="menuOptionsLabelNewerGame">
-            <Tr text="Patch Mihoyonet" />
-          </div>
-          <div className="OptionValue" id="menuOptionsCheckboxNewerGame">
-            <Checkbox
-              onChange={() => this.toggleOption('newer_game')}
-              checked={this.state?.newer_game}
-              id="newerGame"
-            />
-          </div>
-        </div> */}
 
         <Divider />
 

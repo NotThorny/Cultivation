@@ -40,7 +40,8 @@
     "launch_args": "Launch Args",
     "offline_mode": "Offline Mode",
     "fix_res": "Fix Login Timeout",
-    "show_version": "Show game version in buttons"
+    "show_version": "Show game version in buttons",
+    "save_profile": "Save profile"
   },
   "downloads": {
     "grasscutter_fullbuild": "Download Grasscutter 4.0 All-in-One",
